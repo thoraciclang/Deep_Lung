@@ -44,14 +44,33 @@ export const Curvis = function() {
           .attr('class', 'canvas')
           .attr('transform', `translate(60, 10)`)
         x_scale = d3.scaleLinear().range([0, 300]).domain([0,60])
-        x_time = d3.scaleLinear().range([0, 300]).domain([0,5])
-        y_scale = d3.scaleLinear().range([220, 0]).domain([0,1])
-        xAxis = d3.axisBottom(x_time)
+        x_time = d3.scaleLinear().range([0, 300]).domain([0,60])
+        y_scale = d3.scaleLinear().range([200, 0]).domain([0,1])
+        xAxis = d3.axisBottom(x_time).tickValues([0,12,24,36,48,60])
         yAxis = d3.axisLeft(y_scale)
         canvas.append("g")
         .attr("class", "axis axis--x")
-        .attr("transform", "translate(0,220)")
+        .attr("transform", "translate(0,200)")
         .call(xAxis);
+
+        canvas.append("g")
+        .attr("class", "cu-x")
+        .attr("transform", "translate(0,0)")
+        .append("text")
+        .attr("text-anchor", "middle")
+        .attr("x", 150)
+        .attr("y", 200+35)
+        .text("Time (months)");
+
+        canvas.append("g")
+        .attr("class", "cu-y")
+        .attr("transform", "translate(0,0)")
+        .append("text")
+        .attr("text-anchor", "middle")
+        .attr("x", -100)
+        .attr("y", -35)
+        .attr("transform", "rotate(-90)")
+        .text("Event Percent");
 
         canvas.append("g")
         .attr("class", "axis axis--y")
